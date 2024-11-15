@@ -465,6 +465,7 @@ header
   left: 0;
 }
 
+
 .background-header .main-nav .menu-trigger span,
 .background-header .main-nav .menu-trigger span:before,
 .background-header .main-nav .menu-trigger span:after {
@@ -779,24 +780,39 @@ services
 }
 
 .services .item {
-  background-image: url(../images/service-item-bg.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  border-radius: 20px;
-  text-align: center;
-  color: #fff;
-  padding: 40px;
+    background-image: url(../images/service-item-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 20px;
+    text-align: center;
+    color: #fff;
+    padding: 40px;
+    width: 400px; /* Tamaño fijo para el ancho de las cartas */
+    height: 250 px; /* Tamaño fijo para la altura de las cartas */
+    margin: 10px; /* Espacio entre las cartas */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el espacio entre imagen y contenido */
+    overflow: hidden; /* Asegura que no haya desbordamiento de contenido */
 }
 
-.services .item .icon {
-  max-width: 60px;
-  margin: 0 auto;
+.services .item .image-container img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover; /* Asegura que la imagen se recorte correctamente sin distorsionarse */
 }
+
+.services .item .down-content {
+    padding: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Para manejar texto largo */
+    flex-grow: 1; /* Hace que el contenido ocupe el espacio restante */
+}
+
 
 .services .item h4 {
-  margin-top: 25px;
-  margin-bottom: 15px;
+  margin-top: 10px;
   font-size: 18px;
   font-weight: 600;
 }
@@ -1005,7 +1021,7 @@ section.upcoming-meetings .categories .main-button-red a {
   color: #1f272b;
   font-weight: 600;
   display: inline-block;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
 }
 
 .meeting-item .down-content p {
@@ -1623,7 +1639,7 @@ section.meetings-page .pagination ul li a:hover {
   color: #1f272b;
   font-weight: 600;
   display: inline-block;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
 }
 
 .meeting-single-item .down-content h5 {
@@ -1631,7 +1647,7 @@ section.meetings-page .pagination ul li a:hover {
   color: #1f272b;
   font-weight: 700;
   display: inline-block;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
 }
 
 .meeting-single-item .down-content p {
@@ -1701,6 +1717,7 @@ responsive
   .services .owl-nav .owl-next{
     right: -30px;
   }
+
   .services .owl-nav .owl-prev{
     left: -25px;
   }

@@ -3,44 +3,35 @@ package com.stop.publicPage.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class InicioController {
 
-	
-    @GetMapping("/")
-	public String index() {
-    	
-       //Creo el usuario por defecto	
- 	   //try {	
- 		//inicioAplicacionService.iniciarAplicacion();
- 	   //}catch(Exception e) {}	
-    	
-	   return "index.html";
-	}
-/*
-	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-	@GetMapping("/inicio")
-	public String inicio(HttpSession session) {
-		Usuario usuario = (Usuario) session.getAttribute("usuariosession");
+	@Autowired
+	private RestTemplate restTemplate;
 
-		if (usuario != null) {
-			if (usuario.getRol().toString().equals("ADMIN")) {
-				return "redirect:/admin/dashboard";
-			}else {
-				return "inicio";
-			}
-		}else {
-			return "index";
-		}
+	@GetMapping("/")
+	public String index(Model model) {
+		// Asegúrate de que la URL correcta es la de '/servicio/obtener'
+		String url = "http://localhost:9000/servicio/obtener";
+
+		// Obtén la lista de servicios directamente
+		List<Map<String, Object>> servicios = restTemplate.getForObject(url, List.class);
+
+		// Añade la lista de servicios al modelo para mostrarla en la vista
+		model.addAttribute("servicios", servicios);
+		return "index";
 	}
 
-	@GetMapping("/regresoPage")
-	public String regreso() {
-		return "redirect:/inicio";
-	}*/
+
+
 }
